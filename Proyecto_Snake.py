@@ -1,16 +1,23 @@
+#------------Importar modulos---------------
+
 import turtle
 import time
 import random
 
-
+#--------------Variables--------------------
 retraso = 0.1
 marcador = 0
 marcador_alto = 0
+
+#--------------Interfaz grafica --------------------
 
 s = turtle.Screen()
 s.setup(650,650)
 s.bgcolor("black")
 s.title("Proyecto Juego en Python Snake")
+
+
+#--------------Creacion de la cabeza--------------------
 
 serpiente = turtle.Turtle()
 serpiente.speed(1)
@@ -20,6 +27,9 @@ serpiente.goto(0,0)
 serpiente.direction = "stop"
 serpiente.color("green")
 
+
+#--------------Creacion de comida --------------------
+
 comida = turtle.Turtle()
 comida.shape("circle")
 comida.color("red")
@@ -27,15 +37,20 @@ comida.penup()
 comida.goto(0,100)
 comida.speed(0)
 
+#--------------Cuerpo de la serpiente --------------------
 cuerpo = []
+
+#--------------Marcador---------------------------------------------------------------------------
 
 texto = turtle.Turtle()
 texto.speed(0)
 texto.color("white")
 texto.penup()
 texto.hideturtle()
-texto.goto(0, -150)
-texto.write("Marcador: 0\tMarcador mas alto: 0",align="center",font=("verdana", 24, "normal"))
+texto.goto(-130, 250)
+texto.write("Marcador: 0\tMarcador mas alto: 0",align="center",font=("verdana", 10, "normal"))
+
+#--------------Funciones--------------------------------------------------------------------------
 
 def arriba():
     serpiente.direction = "up"
@@ -64,6 +79,7 @@ def movimiento():
         x = serpiente.xcor()
         serpiente.setx(x-20)
 
+#--------------Acciones al Pulsar------------------------------------------------------
 
 s.listen()
 s.onkeypress(arriba, "Up")
@@ -71,6 +87,7 @@ s.onkeypress(abajo, "Down")
 s.onkeypress(izquierda, "Left")
 s.onkeypress(derecha, "Right")
 
+#--------------Acciones condicionadas del juego------------------------------------------------------------------
 
 while True:
     s.update()
@@ -86,7 +103,7 @@ while True:
 
         marcador = 0
         texto.clear()
-        texto.write("Marcador:{}\tMarcador mas alto:{}".format(marcador,marcador_alto),align="center", font=("verdana", 24, "normal" ))
+        texto.write("Marcador:{}\tMarcador mas alto:{}".format(marcador,marcador_alto),align="center", font=("verdana", 10, "normal" ))
 
 
     if serpiente.distance(comida) < 20:
@@ -106,7 +123,7 @@ while True:
         if marcador > marcador_alto:
             marcador_alto = marcador 
             texto.clear()
-            texto.write("Marcador:{}\tMarcador mas alto:{}".format(marcador,marcador_alto),align="center", font=("verdana", 24, "normal" )) 
+            texto.write("Marcador:{}\tMarcador mas alto:{}".format(marcador,marcador_alto),align="center", font=("verdana", 10, "normal" )) 
 
 
     total = len(cuerpo)
@@ -136,13 +153,13 @@ while True:
 
             marcador = 0
             texto.clear()
-            texto.write("Marcador:{}\tMarcador mas alto:{}".format(marcador,marcador_alto),align="center", font=("verdana", 24, "normal" ))
+            texto.write("Marcador:{}\tMarcador mas alto:{}".format(marcador,marcador_alto),align="center", font=("verdana", 10, "normal" ))
 
     
 
 
     time.sleep(retraso)
 
-
+#-----------------Mantener la ventana abierta--------------------------------------
 
 turtle.done()
