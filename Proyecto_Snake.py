@@ -12,8 +12,9 @@ marcador_alto = 0
 #--------------Interfaz grafica --------------------
 
 s = turtle.Screen()
-s.setup(650,650)
+s.setup(550,550)
 s.bgcolor("black")
+s.tracer(0)
 s.title("Proyecto Juego en Python Snake")
 
 
