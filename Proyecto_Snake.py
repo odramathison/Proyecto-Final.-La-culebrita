@@ -6,8 +6,8 @@ import random
 
 #--------------Variables--------------------
 retraso = 0.1
-marcador = 0
-marcador_alto = 0
+score = 0
+high_score = 0
 
 #--------------Interfaz grafica --------------------
 
@@ -26,7 +26,7 @@ serpiente.shape("square")
 serpiente.penup()
 serpiente.goto(0,0)
 serpiente.direction = "stop"
-serpiente.color("green")
+serpiente.color("white")
 
 
 #--------------Creacion de comida --------------------
@@ -49,7 +49,7 @@ texto.color("white")
 texto.penup()
 texto.hideturtle()
 texto.goto(-130, 250)
-texto.write("Marcador: 0\tMarcador mas alto: 0",align="center",font=("verdana", 10, "normal"))
+texto.write("Score: 0\t High Score : 0",align="center",font=("verdana", 10, "normal"))
 
 #--------------Funciones--------------------------------------------------------------------------
 
@@ -80,7 +80,7 @@ def movimiento():
         x = serpiente.xcor()
         serpiente.setx(x-20)
 
-#--------------Acciones al Pulsar------------------------------------------------------
+#--------------Acciones delteclado------------------------------------------------------
 
 s.listen()
 s.onkeypress(arriba, "Up")
@@ -93,8 +93,10 @@ s.onkeypress(derecha, "Right")
 while True:
     s.update()
 
+#---------------------Colisiones con los bordes------------------------------------------------------------------------------
+
     if serpiente.xcor() > 300 or serpiente.xcor() < -300 or serpiente.ycor() > 300 or serpiente.ycor() < -300:
-        time.sleep(2)
+        time.sleep(retraso)
         for i in cuerpo:
             i.clear()
             i.hideturtle()
@@ -102,10 +104,11 @@ while True:
         serpiente.direction = "stop"
         cuerpo.clear()
 
-        marcador = 0
+        score = 0
         texto.clear()
-        texto.write("Marcador:{}\tMarcador mas alto:{}".format(marcador,marcador_alto),align="center", font=("verdana", 10, "normal" ))
+        texto.write("Score:{}\tHigh Score:{}".format(score,high_score),align="center", font=("verdana", 10, "normal" ))
 
+#---------------------Colisiones con la comida------------------------------------------------------------------------------
 
     if serpiente.distance(comida) < 20:
         x = random.randint(-250,250)
@@ -114,18 +117,20 @@ while True:
 
         nuevo_cuerpo = turtle.Turtle()
         nuevo_cuerpo.shape("square")
-        nuevo_cuerpo.color("green")
+        nuevo_cuerpo.color("gray")
         nuevo_cuerpo.penup()
         nuevo_cuerpo.goto(0,100)
         nuevo_cuerpo.speed(0)
         cuerpo.append(nuevo_cuerpo)
 
-        marcador += 10
-        if marcador > marcador_alto:
-            marcador_alto = marcador 
+#---------------------Aumentar marcador ------------------------------------------------------------------------------
+        score += 10
+        if score > high_score:
+            high_score = score 
             texto.clear()
-            texto.write("Marcador:{}\tMarcador mas alto:{}".format(marcador,marcador_alto),align="center", font=("verdana", 10, "normal" )) 
+            texto.write("Score:{}\tHigh_score:{}".format(score,high_score),align="center", font=("verdana", 10, "normal" )) 
 
+#--------------Movimiento del cuerpo de la serpiente------------------------------------------------------------------
 
     total = len(cuerpo)
     for i in range(total -1,0,-1):
@@ -142,9 +147,11 @@ while True:
 
     movimiento()
 
+#--------------------- Colisiones con el cuerpo ------------------------------------------------------------------------------
 
     for i in cuerpo:
         if i.distance(serpiente) < 20:
+            time.sleep(retraso)
             for i in cuerpo:
                 i.clear()
                 i.hideturtle()
@@ -152,9 +159,9 @@ while True:
             cuerpo.clear()
             serpiente.direction = "stop"
 
-            marcador = 0
+            score = 0
             texto.clear()
-            texto.write("Marcador:{}\tMarcador mas alto:{}".format(marcador,marcador_alto),align="center", font=("verdana", 10, "normal" ))
+            texto.write("Score:{}\tHigh Score:{}".format(score,high_score),align="center", font=("verdana", 10, "normal" ))
 
     
 
