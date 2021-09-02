@@ -1,9 +1,3 @@
-![logo de markdown](string(353) "{"error":{"root_cause":[{"type":"document_missing_exception","reason":"[logo][121599]: document)
-
-
-
-
-
 
 # Snake Game :snake:
 
@@ -18,8 +12,6 @@ We select the game of the snake where we have put to the test the knowledge we h
 * [Project Description](#item1)
 * [Rules](#item2)
 * [Workflow](#item3)
-
-
 
 
 
@@ -65,7 +57,7 @@ Modules were used such as:
 * Random
 
 
-## Autores :pencil:
+## Authors :pencil:
 
 - Odra Mathison
 - Benjamin Kenyery 
