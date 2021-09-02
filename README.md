@@ -57,7 +57,12 @@ Modules were used such as:
 * Random
 
 
-## Authors :pencil:
+## Trello
+
+Puedes revisar nuestra programacion en https://trello.com/invite/b/Vc6eoOTX/8bb1e032d37c06a455b17e4d5ec201c0/programacion-del-videojuego
+
+
+##Authors :pencil:
 
 - Odra Mathison
 - Benjamin Kenyery 
